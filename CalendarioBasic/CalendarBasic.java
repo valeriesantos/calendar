@@ -7,9 +7,9 @@
  */
 public class CalendarBasic
 {
-    private int dia;
-    private int mes;
-    private int año;
+    private DisplayDosDigitos dia;
+    private DisplayDosDigitos mes;
+    private DisplayDosDigitos anio;
     
     
     
@@ -18,36 +18,47 @@ public class CalendarBasic
     /**
      * Constructor for objects of class CalendarBasic
      */
-    public void FijarFecha(int fijarDia,int fijarMes,int fijarAño)
+        public CalendarBasic()
     {
-          dia = fijarDia;
-          mes = fijarMes;
-          año = fijarAño;
+        dia = new DisplayDosDigitos(31);
+        mes = new DisplayDosDigitos(13);
+        anio = new DisplayDosDigitos(100);
     }
     
-    
-     
-    public CalendarBasic()
+    public void fijarFecha(int nuevoDia,int nuevoMes,int nuevoAnio)
     {
-        dia = 1;
-        mes = 1;
-        año = 1;
-    
+        dia.setValor(nuevoDia);
+        mes.setValor(nuevoMes);
+        anio.setValor(nuevoAnio);
     }
-    public void AvanzarFecha(){
-        if (dia < 30){
-          dia = dia + 1;
-          mes = mes;
-          año = año;
+
+    public void avanzarFecha()
+    {
+        dia.incrementaValor();
+        if(dia.getValor() == 1){
+            //Si estamos aqui es que hay que hacer avanzar el mes.
+            mes.incrementaValor();
+            if(mes.getValor() == 1){
+                //Si estamos awui hay que hacer avanzar el año.
+                 anio.incrementaValor();
+            } 
         }
-        else {
-            System.out.println("####Fecha introducida incorrecta####");
-        }
-        
-      }
     }
-   
     
+   public String mostrarFecha(){
+       return dia.getValorDelDisplay() + "-" + mes.getValorDelDisplay() + "-" + anio.getValorDelDisplay();
+       
+    }
+}
+    
+    
+    
+    
+    
+
+
+
+
     
  
 
